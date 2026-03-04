@@ -1,0 +1,281 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - Bella Vista Restaurant{% endblock %}
+
+{% block extra_css %}
+<style>
+    .page-header {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=800');
+        background-size: cover;
+        background-position: center;
+        height: 40vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+    }
+
+    .page-header h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .page-header p {
+        font-size: 1.3rem;
+        opacity: 0.9;
+    }
+
+    .detailed-content {
+        padding: 4rem 0;
+    }
+
+    .detailed-content .container {
+        max-width: 1000px;
+    }
+
+    .story-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        margin-bottom: 4rem;
+    }
+
+    .story-section.reverse {
+        direction: rtl;
+    }
+
+    .story-section.reverse>* {
+        direction: ltr;
+    }
+
+    .story-image {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .story-content h3 {
+        font-size: 2rem;
+        color: #c9a227;
+        margin-bottom: 1.5rem;
+    }
+
+    .story-content p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 1rem;
+    }
+
+    .team-section {
+        margin-top: 4rem;
+    }
+
+    .team-section h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #c9a227;
+        margin-bottom: 3rem;
+    }
+
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .team-member {
+        text-align: center;
+        padding: 2rem;
+        background: #f9f9f9;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .team-member:hover {
+        transform: translateY(-10px);
+    }
+
+    .team-member img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 1rem;
+        border: 3px solid #c9a227;
+    }
+
+    .team-member h4 {
+        font-size: 1.3rem;
+        color: #333;
+        margin-bottom: 0.5rem;
+    }
+
+    .team-member p {
+        color: #666;
+        font-style: italic;
+    }
+
+    .awards-section {
+        margin-top: 4rem;
+        background: #1a1a1a;
+        color: white;
+        padding: 4rem 0;
+    }
+
+    .awards-section h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #c9a227;
+        margin-bottom: 3rem;
+    }
+
+    .awards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .award-item {
+        padding: 2rem;
+    }
+
+    .award-item .award-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .award-item h4 {
+        color: #c9a227;
+        margin-bottom: 0.5rem;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-bottom: 2rem;
+        color: #c9a227;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<header class="page-header">
+    <div class="container">
+        <h1>Our Story</h1>
+        <p>A Legacy of Culinary Excellence Since 2015</p>
+    </div>
+</header>
+
+<section class="detailed-content">
+    <div class="container">
+        <a href="/" class="back-link">← Back to Home</a>
+
+        <div class="story-section">
+            <div class="story-image">
+                <img src="https://images.pexels.com/photos/109968/pexels-photo-109968.jpeg?auto=compress&cs=tinysrgb&w=800"
+                    alt="Restaurant Interior" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+            </div>
+            <div class="story-content">
+                <h3>The Beginning</h3>
+                <p>Bella Vista was founded in 2015 by Chef Marco Bellini and his wife, Isabella. After years of working
+                    in Michelin-starred restaurants across Europe, they dreamed of creating a place where exceptional
+                    cuisine met warm, welcoming hospitality.</p>
+                <p>The name "Bella Vista" (Beautiful View) reflects their vision of providing not just excellent food,
+                    but an unforgettable dining experience that pleases all the senses.</p>
+            </div>
+        </div>
+
+        <div class="story-section reverse">
+            <div class="story-image">
+                <img src="https://images.pexels.com/photos/3338497/pexels-photo-3338497.jpeg?auto=compress&cs=tinysrgb&w=800"
+                    alt="Chef preparing food" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+            </div>
+            <div class="story-content">
+                <h3>Our Philosophy</h3>
+                <p>We believe that great food starts with the finest ingredients. That's why we partner exclusively with
+                    local farms and artisanal producers who share our commitment to quality and sustainability.</p>
+                <p>Every dish that leaves our kitchen is crafted with precision, passion, and the freshest seasonal
+                    ingredients. Our menu changes quarterly to reflect the best of each season.</p>
+            </div>
+        </div>
+
+        <div class="story-section">
+            <div class="story-image">
+                <img src="https://images.pexels.com/photos/1855214/pexels-photo-1855214.jpeg?auto=compress&cs=tinysrgb&w=800"
+                    alt="Elegant dining" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+            </div>
+            <div class="story-content">
+                <h3>The Experience</h3>
+                <p>At Bella Vista, dining is an event. From the moment you step through our doors, you'll be transported
+                    to an elegant Italian villa where every detail has been carefully curated for your comfort.</p>
+                <p>Our attentive staff ensures that your experience exceeds expectations, whether you're celebrating a
+                    special occasion or simply enjoying a memorable dinner with loved ones.</p>
+            </div>
+        </div>
+
+        <div class="team-section">
+            <h2>Meet Our Culinary Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://images.pexels.com/photos/3814440/pexels-photo-3814440.jpeg?auto=compress&cs=tinysrgb&w=400"
+                        alt="Chef Marco">
+                    <h4>Chef Marco Bellini</h4>
+                    <p>Executive Chef & Founder</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.pexels.com/photos/4253312/pexels-photo-4253312.jpeg?auto=compress&cs=tinysrgb&w=400"
+                        alt="Chef Elena">
+                    <h4>Chef Elena Rossi</h4>
+                    <p>Head Pastry Chef</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.pexels.com/photos/8408960/pexels-photo-8408960.jpeg?auto=compress&cs=tinysrgb&w=400"
+                        alt="Sommelier">
+                    <h4>James Thornton</h4>
+                    <p>Master Sommelier</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="awards-section">
+    <div class="container">
+        <h2>Awards & Recognition</h2>
+        <div class="awards-grid">
+            <div class="award-item">
+                <div class="award-icon">🏆</div>
+                <h4>Michelin Star</h4>
+                <p>2020, 2021, 2022, 2023</p>
+            </div>
+            <div class="award-item">
+                <div class="award-icon">⭐</div>
+                <h4>Wine Spectator</h4>
+                <p>Grand Award 2019-2024</p>
+            </div>
+            <div class="award-item">
+                <div class="award-icon">🍴</div>
+                <h4>James Beard</h4>
+                <p>Finalist 2021</p>
+            </div>
+            <div class="award-item">
+                <div class="award-icon">💫</div>
+                <h4>AAA Diamond</h4>
+                <p>Five Diamond 2020-2024</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

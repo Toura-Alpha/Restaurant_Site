@@ -1,0 +1,431 @@
+{% extends "base.html" %}
+
+{% block title %}Reservations - Bella Vista Restaurant{% endblock %}
+
+{% block extra_css %}
+<style>
+    .page-header {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/1304546/pexels-photo-1304546.jpeg?auto=compress&cs=tinysrgb&w=800');
+        background-size: cover;
+        background-position: center;
+        height: 40vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+    }
+
+    .page-header h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .page-header p {
+        font-size: 1.3rem;
+        opacity: 0.9;
+    }
+
+    .reservations-page-content {
+        padding: 4rem 0;
+    }
+
+    .reservations-page-content .container {
+        max-width: 1000px;
+    }
+
+    .reservation-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+
+    .reservation-info h3 {
+        color: #c9a227;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .reservation-info p {
+        color: #555;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+    }
+
+    .reservation-details {
+        background: #f9f9f9;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-top: 2rem;
+    }
+
+    .reservation-details h4 {
+        color: #333;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+    }
+
+    .detail-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+
+    .detail-item .icon {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        width: 40px;
+    }
+
+    .detail-item .text strong {
+        display: block;
+        color: #333;
+    }
+
+    .detail-item .text span {
+        color: #666;
+        font-size: 0.95rem;
+    }
+
+    .reservation-form-container {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 8px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .reservation-form-container h3 {
+        color: #c9a227;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #333;
+        font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+        outline: none;
+        border-color: #c9a227;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 1rem;
+        background: #c9a227;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background: #a88620;
+    }
+
+    .success-message {
+        text-align: center;
+        padding: 3rem;
+        background: #f0f9f0;
+        border-radius: 8px;
+        border: 2px solid #4caf50;
+    }
+
+    .success-message h3 {
+        color: #4caf50;
+        margin-bottom: 1rem;
+    }
+
+    .success-message p {
+        color: #555;
+    }
+
+    .policies-section {
+        background: #1a1a1a;
+        color: white;
+        padding: 4rem 0;
+        margin-top: 4rem;
+    }
+
+    .policies-section h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #c9a227;
+        margin-bottom: 3rem;
+    }
+
+    .policies-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .policy-item {
+        background: #2a2a2a;
+        padding: 2rem;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .policy-item .icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .policy-item h4 {
+        color: #c9a227;
+        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+    }
+
+    .policy-item p {
+        color: #aaa;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-bottom: 2rem;
+        color: #c9a227;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<header class="page-header">
+    <div class="container">
+        <h1>Reservations</h1>
+        <p>Secure Your Table for an Unforgettable Evening</p>
+    </div>
+</header>
+
+<section class="reservations-page-content">
+    <div class="container">
+        <a href="/" class="back-link">← Back to Home</a>
+
+        <div class="reservation-layout">
+            <div class="reservation-info">
+                <h3>Book Your Table</h3>
+                <p>We look forward to welcoming you to Bella Vista. For parties of 8 or more, please call us directly
+                    for special arrangements.</p>
+                <p>For special events, private dining, or celebrations, please contact our events team who will be happy
+                    to create a customized experience for you.</p>
+
+                <div class="reservation-details">
+                    <h4>Location & Hours</h4>
+                    <div class="detail-item">
+                        <span class="icon">📍</span>
+                        <div class="text">
+                            <strong>Address</strong>
+                            <span>123 Garden Street, Downtown, CA 90210</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="icon">🕐</span>
+                        <div class="text">
+                            <strong>Dinner Service</strong>
+                            <span>Monday - Thursday: 5:00 PM - 10:00 PM<br>
+                                Friday - Saturday: 5:00 PM - 11:00 PM<br>
+                                Sunday: 4:00 PM - 9:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="icon">📞</span>
+                        <div class="text">
+                            <strong>Phone</strong>
+                            <span>(555) 123-4567</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="icon">✉️</span>
+                        <div class="text">
+                            <strong>Email</strong>
+                            <span>reservations@bellavista.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reservation-form-container">
+                <form id="reservation-form-page">
+                    <h3>Make a Reservation</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Number of Guests *</label>
+                            <input type="number" id="guests" name="guests" min="1" max="20" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Date *</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Time *</label>
+                            <input type="time" id="time" name="time" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="occasion">Occasion</label>
+                        <select id="occasion" name="occasion">
+                            <option value="">Select an occasion</option>
+                            <option value="birthday">Birthday</option>
+                            <option value="anniversary">Anniversary</option>
+                            <option value="business">Business Dinner</option>
+                            <option value="date">Date Night</option>
+                            <option value="celebration">Special Celebration</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Special Requests</label>
+                        <textarea id="message" name="message" rows="3"
+                            placeholder="Dietary restrictions, seating preferences, etc."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Confirm Reservation</button>
+                </form>
+
+                <div id="reservation-success-page" class="success-message" style="display: none;">
+                    <h3>✓ Reservation Confirmed!</h3>
+                    <p>Thank you for choosing Bella Vista. A confirmation email has been sent to your email address.</p>
+                    <p>We look forward to seeing you!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="policies-section">
+    <div class="container">
+        <h2>Reservation Policies</h2>
+        <div class="policies-grid">
+            <div class="policy-item">
+                <div class="icon">⏰</div>
+                <h4>Arrival Time</h4>
+                <p>Please arrive within 15 minutes of your reservation time. Tables are held for 15 minutes only.</p>
+            </div>
+            <div class="policy-item">
+                <div class="icon">👔</div>
+                <h4>Dress Code</h4>
+                <p>We request smart casual attire. Jackets are recommended for dinner service.</p>
+            </div>
+            <div class="policy-item">
+                <div class="icon">📞</div>
+                <h4>Cancellation</h4>
+                <p>Please cancel at least 24 hours in advance. No-shows may incur a fee.</p>
+            </div>
+            <div class="policy-item">
+                <div class="icon">👥</div>
+                <h4>Large Parties</h4>
+                <p>For parties of 8+, please call us for special arrangements and potential deposit.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function setMinDate() {
+        const dateInput = document.getElementById('date');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        }
+    }
+
+    setMinDate();
+
+    const form = document.getElementById('reservation-form-page');
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                guests: parseInt(document.getElementById('guests').value),
+                message: document.getElementById('message').value
+            };
+
+            try {
+                const response = await fetch('/api/reservations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    form.style.display = 'none';
+                    document.getElementById('reservation-success-page').style.display = 'block';
+                } else {
+                    alert('Failed to make reservation. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error making reservation:', error);
+                alert('Error making reservation. Please try again later.');
+            }
+        });
+    }
+</script>
+{% endblock %}

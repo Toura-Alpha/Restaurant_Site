@@ -1,0 +1,379 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Bella Vista Restaurant{% endblock %}
+
+{% block extra_css %}
+<style>
+    .page-header {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/2343466/pexels-photo-2343466.jpeg?auto=compress&cs=tinysrgb&w=800');
+        background-size: cover;
+        background-position: center;
+        height: 40vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+    }
+
+    .page-header h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .page-header p {
+        font-size: 1.3rem;
+        opacity: 0.9;
+    }
+
+    .contact-page-content {
+        padding: 4rem 0;
+    }
+
+    .contact-page-content .container {
+        max-width: 1200px;
+    }
+
+    .contact-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+
+    .contact-info-section h3 {
+        color: #c9a227;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-info-section p {
+        color: #555;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+    }
+
+    .contact-cards {
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    .contact-card {
+        display: flex;
+        align-items: flex-start;
+        padding: 1.5rem;
+        background: #f9f9f9;
+        border-radius: 8px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-card .icon {
+        font-size: 2.5rem;
+        margin-right: 1.5rem;
+        width: 60px;
+        text-align: center;
+    }
+
+    .contact-card .details h4 {
+        color: #333;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .contact-card .details p {
+        color: #666;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .contact-form-section {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 8px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form-section h3 {
+        color: #c9a227;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #333;
+        font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+        outline: none;
+        border-color: #c9a227;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 1rem;
+        background: #c9a227;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background: #a88620;
+    }
+
+    .map-section {
+        margin-top: 4rem;
+    }
+
+    .map-section h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #c9a227;
+        margin-bottom: 2rem;
+    }
+
+    .map-container {
+        height: 450px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .parking-section {
+        background: #1a1a1a;
+        color: white;
+        padding: 4rem 0;
+        margin-top: 4rem;
+    }
+
+    .parking-section h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #c9a227;
+        margin-bottom: 3rem;
+    }
+
+    .parking-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .parking-item {
+        text-align: center;
+        padding: 2rem;
+        background: #2a2a2a;
+        border-radius: 8px;
+    }
+
+    .parking-item .icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .parking-item h4 {
+        color: #c9a227;
+        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+    }
+
+    .parking-item p {
+        color: #aaa;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-bottom: 2rem;
+        color: #c9a227;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<header class="page-header">
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>We'd Love to Hear From You</p>
+    </div>
+</header>
+
+<section class="contact-page-content">
+    <div class="container">
+        <a href="/" class="back-link">← Back to Home</a>
+
+        <div class="contact-layout">
+            <div class="contact-info-section">
+                <h3>Get in Touch</h3>
+                <p>Whether you have a question about our menu, want to make a special request, or would like to host an
+                    event, we're here to help. Our team responds to all inquiries within 24 hours.</p>
+
+                <div class="contact-cards">
+                    <div class="contact-card">
+                        <div class="icon">📍</div>
+                        <div class="details">
+                            <h4>Address</h4>
+                            <p>123 Garden Street<br>Downtown, CA 90210</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="icon">📞</div>
+                        <div class="details">
+                            <h4>Phone</h4>
+                            <p>Main: (555) 123-4567<br>Events: (555) 123-4568</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="icon">✉️</div>
+                        <div class="details">
+                            <h4>Email</h4>
+                            <p>General: info@bellavista.com<br>Reservations: reservations@bellavista.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="icon">🕐</div>
+                        <div class="details">
+                            <h4>Hours</h4>
+                            <p>Monday - Thursday: 5pm - 10pm<br>
+                                Friday - Saturday: 5pm - 11pm<br>
+                                Sunday: 4pm - 9pm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-section">
+                <h3>Send Us a Message</h3>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="reservation">Reservation Question</option>
+                            <option value="event">Private Event</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="careers">Careers</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" required
+                            placeholder="How can we help you?"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <h2>Find Us</h2>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7152203615676!2d-118.24531808478493!3d34.05223498060602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c648fa1d4803%3A0xdec27bf11f9fd036!2sLos%20Angeles%2C%20CA%2090012!5e0!3m2!1sen!2sus!4v1634567890123!5m2!1sen!2sus"
+                    allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="parking-section">
+    <div class="container">
+        <h2>Parking & Directions</h2>
+        <div class="parking-grid">
+            <div class="parking-item">
+                <div class="icon">🚗</div>
+                <h4>Valet Parking</h4>
+                <p>Complimentary valet parking available for all dinner guests. Entrances on Garden Street and Oak
+                    Avenue.</p>
+            </div>
+            <div class="parking-item">
+                <div class="icon">🅿️</div>
+                <h4>Self Parking</h4>
+                <p>Public parking garage located one block away. Validation available with minimum purchase.</p>
+            </div>
+            <div class="parking-item">
+                <div class="icon">🚕</div>
+                <h4>Ride Share</h4>
+                <p>Designated drop-off zone at our main entrance. Uber and Lyft pickups available upon request.</p>
+            </div>
+            <div class="parking-item">
+                <div class="icon">🚇</div>
+                <h4>Public Transit</h4>
+                <p>Metro stations within walking distance. Take the Red Line to Downtown station, exit at 4th Street.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you within 24 hours.');
+            contactForm.reset();
+        });
+    }
+</script>
+{% endblock %}

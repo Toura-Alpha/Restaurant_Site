@@ -1,0 +1,357 @@
+{% extends "base.html" %}
+
+{% block title %}Menu - Bella Vista Restaurant{% endblock %}
+
+{% block extra_css %}
+<style>
+    .page-header {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/1410235/pexels-photo-1410235.jpeg?auto=compress&cs=tinysrgb&w=800');
+        background-size: cover;
+        background-position: center;
+        height: 40vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+    }
+
+    .page-header h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .page-header p {
+        font-size: 1.3rem;
+        opacity: 0.9;
+    }
+
+    .menu-page-content {
+        padding: 4rem 0;
+    }
+
+    .menu-page-content .container {
+        max-width: 1200px;
+    }
+
+    .detailed-menu-section {
+        margin-bottom: 4rem;
+    }
+
+    .menu-category-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #c9a227;
+    }
+
+    .menu-category-header h2 {
+        font-size: 2.2rem;
+        color: #c9a227;
+        margin: 0;
+    }
+
+    .menu-category-header .category-icon {
+        font-size: 2.5rem;
+        margin-right: 1rem;
+    }
+
+    .menu-item-detailed {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr 0.5fr;
+        gap: 2rem;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid #eee;
+        align-items: center;
+    }
+
+    .menu-item-detailed:last-child {
+        border-bottom: none;
+    }
+
+    .menu-item-detailed img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-item-info h3 {
+        font-size: 1.4rem;
+        color: #333;
+        margin-bottom: 0.5rem;
+    }
+
+    .menu-item-info p {
+        color: #666;
+        line-height: 1.6;
+        font-size: 1rem;
+    }
+
+    .menu-item-info .allergens {
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        color: #999;
+        font-style: italic;
+    }
+
+    .menu-item-price {
+        font-size: 1.5rem;
+        color: #c9a227;
+        font-weight: 700;
+    }
+
+    .menu-notes {
+        background: #f9f9f9;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-top: 3rem;
+    }
+
+    .menu-notes h3 {
+        color: #c9a227;
+        margin-bottom: 1rem;
+    }
+
+    .menu-notes ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .menu-notes li {
+        padding: 0.5rem 0;
+        color: #555;
+    }
+
+    .menu-notes li:before {
+        content: "•";
+        color: #c9a227;
+        margin-right: 0.5rem;
+    }
+
+    .wine-section {
+        background: #1a1a1a;
+        color: white;
+        padding: 4rem 0;
+        margin-top: 4rem;
+    }
+
+    .wine-section h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #c9a227;
+        margin-bottom: 3rem;
+    }
+
+    .wine-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .wine-category h3 {
+        color: #c9a227;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #333;
+    }
+
+    .wine-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #333;
+    }
+
+    .wine-item:last-child {
+        border-bottom: none;
+    }
+
+    .wine-name {
+        font-weight: 600;
+    }
+
+    .wine-price {
+        color: #c9a227;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-bottom: 2rem;
+        color: #c9a227;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<header class="page-header">
+    <div class="container">
+        <h1>Our Menu</h1>
+        <p>Crafted with Passion, Served with Love</p>
+    </div>
+</header>
+
+<section class="menu-page-content">
+    <div class="container">
+        <a href="/" class="back-link">← Back to Home</a>
+
+        <div class="detailed-menu-section">
+            <div class="menu-category-header">
+                <span class="category-icon">🥗</span>
+                <h2>Appetizers</h2>
+            </div>
+            <div id="appetizers-container">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+
+        <div class="detailed-menu-section">
+            <div class="menu-category-header">
+                <span class="category-icon">🍽️</span>
+                <h2>Main Courses</h2>
+            </div>
+            <div id="mains-container">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+
+        <div class="detailed-menu-section">
+            <div class="menu-category-header">
+                <span class="category-icon">🍰</span>
+                <h2>Desserts</h2>
+            </div>
+            <div id="desserts-container">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+
+        <div class="detailed-menu-section">
+            <div class="menu-category-header">
+                <span class="category-icon">🍷</span>
+                <h2>Drinks</h2>
+            </div>
+            <div id="drinks-container">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+
+        <div class="menu-notes">
+            <h3>Dining Information</h3>
+            <ul>
+                <li>Please inform your server of any allergies or dietary restrictions</li>
+                <li>Gratuity of 18% will be added for parties of 6 or more</li>
+                <li>We accommodate vegetarian, vegan, and gluten-free options upon request</li>
+                <li>Private dining rooms available for special events</li>
+                <li>Business casual attire is requested</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="wine-section">
+    <div class="container">
+        <h2>Featured Wines</h2>
+        <div class="wine-grid">
+            <div class="wine-category">
+                <h3>Champagne & Sparkling</h3>
+                <div class="wine-item">
+                    <span class="wine-name">Dom Pérignon, 2012</span>
+                    <span class="wine-price">$285</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Veuve Clicquot Yellow Label</span>
+                    <span class="wine-price">$95</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Ferrari Brut, Trentodoc</span>
+                    <span class="wine-price">$65</span>
+                </div>
+            </div>
+            <div class="wine-category">
+                <h3>White Wines</h3>
+                <div class="wine-item">
+                    <span class="wine-name">Chablis Grand Cru, 2019</span>
+                    <span class="wine-price">$145</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Puligny-Montrachet, 2020</span>
+                    <span class="wine-price">$125</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Sancerre "La Côte", 2021</span>
+                    <span class="wine-price">$75</span>
+                </div>
+            </div>
+            <div class="wine-category">
+                <h3>Red Wines</h3>
+                <div class="wine-item">
+                    <span class="wine-name">Château Margaux, 2015</span>
+                    <span class="wine-price">$595</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Brunello di Montalcino, 2017</span>
+                    <span class="wine-price">$185</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Barolo "Monfortino", 2014</span>
+                    <span class="wine-price">$425</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    async function loadMenuItems() {
+        const containers = {
+            'appetizers': document.getElementById('appetizers-container'),
+            'mains': document.getElementById('mains-container'),
+            'desserts': document.getElementById('desserts-container'),
+            'drinks': document.getElementById('drinks-container')
+        };
+
+        try {
+            const response = await fetch('/api/menu');
+            const data = await response.json();
+
+            if (data.success) {
+                const items = data.data;
+
+                for (const [category, container] of Object.entries(containers)) {
+                    const categoryItems = items.filter(item => item.category === category);
+                    if (categoryItems.length > 0) {
+                        container.innerHTML = categoryItems.map(item => `
+                            <div class="menu-item-detailed">
+                                <img src="${item.image_url}" alt="${item.name}" onerror="this.src='https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800'">
+                                <div class="menu-item-info">
+                                    <h3>${item.name}</h3>
+                                    <p>${item.description}</p>
+                                    <span class="allergens">Contains: Please inform server of allergies</span>
+                                </div>
+                                <div class="menu-item-price">$${parseFloat(item.price).toFixed(2)}</div>
+                            </div>
+                        `).join('');
+                    } else {
+                        container.innerHTML = '<p>No items available in this category.</p>';
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error loading menu:', error);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadMenuItems);
+</script>
+{% endblock %}
