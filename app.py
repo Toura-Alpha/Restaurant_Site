@@ -11,11 +11,29 @@ CORS(app)
 
 supabase_url = os.getenv('SUPABASE_URL')
 supabase_key = os.getenv('SUPABASE_KEY')
+
+# Use service_role key to bypass RLS (for both local and production)
 supabase: Client = create_client(supabase_url, supabase_key)
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/menu')
+def menu():
+    return render_template('menu.html')
+
+@app.route('/reservations')
+def reservations():
+    return render_template('reservations.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
 
 @app.route('/api/menu', methods=['GET'])
 def get_menu():
